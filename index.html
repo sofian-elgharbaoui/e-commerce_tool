@@ -4,102 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
     <title>calculate profit tool</title>
-    <style>
-      div {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap");
-      .container {
-        margin: 3em 2em;
-        font-family: "Nunito", sans-serif;
-        text-transform: capitalize;
-      }
-      .columns {
-        display: flex;
-        gap: 50px;
-        flex-wrap: wrap;
-      }
-      .column {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-      }
-      label {
-        font-size: large;
-        font-weight: 600;
-      }
-      input {
-        height: 30px;
-        border-radius: 10px;
-        outline: none;
-        border: 1px solid #aaa;
-        margin: 5px 0 20px;
-        padding-left: 10px;
-        font-size: 20px;
-      }
-      button {
-        font-size: 20px;
-        padding: 10px 30px;
-        border-radius: 10px;
-        border: 1px solid green;
-        background-color: lightgreen;
-        color: #222;
-        text-align: center;
-        display: block;
-        margin: 15px auto;
-        cursor: pointer;
-      }
-      button:hover {
-        opacity: 0.8;
-      }
-      #results-one {
-        display: flex;
-        width: 90%;
-        margin: 0 auto;
-        gap: 2em;
-        flex-wrap: wrap;
-      }
-      #results-one > div {
-        flex: 1;
-      }
-      #results-one > div > div {
-        display: grid;
-        justify-content: center;
-        align-content: center;
-        height: 6em;
-        margin: 2em 0;
-        background-color: rgb(89, 191, 255);
-      }
-      #results-one > div > div > p {
-        text-align: center;
-        margin: 0;
-        color: #fff;
-      }
-      #results-one > div > div > p:nth-child(1) {
-        font-weight: bold;
-        letter-spacing: 1px;
-      }
-      #results-one > div > div > p:nth-child(2) {
-        font-weight: 800;
-      }
-      #results-two {
-        min-width: fit-content;
-        width: 20em;
-        margin: 50px auto;
-      }
-      #results-two > h4 {
-        border-radius: 10px;
-        border: 1px solid green;
-        background-color: rgb(79, 218, 79);
-        color: #fff;
-        padding: 20px;
-        letter-spacing: 1.3px;
-        text-align: center;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -194,110 +101,15 @@
           </h4>
           <h4>total net profit: <span id="total-net-profit">0</span> DH</h4>
         </div>
+        <div id="save-result_cont">
+          <label for="save-result">save result as: </label>
+          <input type="text" id="save-result" name="save-result" />
+        </div>
       </div>
+      <aside id="side-bar">
+        <img src="imgs/icon.png" alt="nav-bar icon" />
+      </aside>
     </div>
-    <script>
-      let advertisement_Price = document.getElementById("ad-price");
-      let product_Price = document.getElementById("product-price");
-      let products_Number = document.getElementById("product-number");
-      let delivery_Price = document.getElementById("delivery-price");
-      let product_Profit_Persentage = document.getElementById(
-        "product-profit-persentage"
-      );
-      let additional_Costs = document.getElementById("additional-costs");
-      let shipping_Price = document.getElementById("shipping-price");
-
-      let submit = document.getElementById("submit");
-      let results_Section = document.getElementById("results");
-
-      let total_Products_Spending = document.getElementById(
-        "total-product-spending"
-      );
-      let total_Shipping_Fees = document.getElementById("total-shipping-fees");
-      let total_Orders_Had_Been_Confirmed = document.getElementById(
-        "total-orders-had-been-confirmed"
-      );
-      let total_Orders_Had_Been_Delivered = document.getElementById(
-        "total-orders-had-been-delivered"
-      );
-
-      let total_Investment = document.getElementById("total-investment");
-      let total_Revenue = document.getElementById("total-revenue");
-      let final_Product_Price = document.getElementById("final-product-price");
-      let total_Net_Profit = document.getElementById("total-net-profit");
-
-      let arr = [
-        advertisement_Price,
-        product_Price,
-        products_Number,
-        delivery_Price,
-        product_Profit_Persentage,
-        additional_Costs,
-        shipping_Price,
-      ];
-      submit.onclick = () => {
-        let isValid = true;
-
-        for (let i = 0; i < arr.length; i++) {
-          if (arr[i].value === "" || arr[i].value === "0") {
-            isValid = false;
-            break;
-          }
-        }
-
-        if (isValid) {
-          let peopleReached = (+advertisement_Price.value * 2000) / 50;
-          console.log(peopleReached);
-          let onePersonAdCost = +advertisement_Price.value / peopleReached;
-          // let total_Sold_Products_Ammount =
-          // +product_Profit_Persentage.value * +products_Number.value;
-
-          let total_Products_Spending_Ammount =
-            +product_Price.value * +products_Number.value;
-          let total_Additional_Costs =
-            +additional_Costs.value * +products_Number.value;
-          let total_Shipping_Fees_Ammount =
-            +products_Number.value * +shipping_Price.value;
-
-          results_Section.hidden = false;
-
-          total_Products_Spending.textContent = total_Products_Spending_Ammount;
-          total_Orders_Had_Been_Confirmed.textContent = Math.floor(
-            peopleReached / 10
-          );
-          total_Orders_Had_Been_Delivered.textContent = Math.floor(
-            peopleReached / 12
-          );
-          total_Shipping_Fees.textContent =
-            total_Shipping_Fees_Ammount.toFixed(2);
-
-          let the_Final_Price =
-            +product_Price.value +
-            Number(
-              +product_Price.value * (+product_Profit_Persentage.value / 100)
-            ) +
-            +shipping_Price.value +
-            +additional_Costs.value +
-            onePersonAdCost +
-            Number(+delivery_Price.value / +products_Number.value);
-
-          let total_Money_Invested =
-            +advertisement_Price.value +
-            total_Products_Spending_Ammount +
-            +delivery_Price.value +
-            total_Additional_Costs +
-            total_Shipping_Fees_Ammount;
-
-          let total_Money_Revenue = the_Final_Price * +products_Number.value;
-
-          total_Investment.textContent = Math.ceil(total_Money_Invested);
-          total_Revenue.textContent = Math.round(total_Money_Revenue);
-          final_Product_Price.textContent = Math.round(the_Final_Price);
-          total_Net_Profit.textContent = Math.floor(
-            total_Money_Revenue - total_Money_Invested
-          );
-        }
-      };
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>

@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800&display=swap");
+
+div,
+h3 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  margin: 3em 2em;
+  font-family: "Nunito", sans-serif;
+  text-transform: capitalize;
+}
+.columns {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+label {
+  font-size: large;
+  font-weight: 600;
+}
+input {
+  height: 30px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #aaa;
+  margin: 5px 0 20px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+button {
+  font-size: 20px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 1px solid green;
+  background-color: lightgreen;
+  color: #222;
+  text-align: center;
+  display: block;
+  margin: 15px auto;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.8;
+}
+#results-one {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+#results-one > div {
+  flex: 1;
+}
+#results-one > div > div {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 6em;
+  margin: 2em 0;
+  background-color: rgb(89, 191, 255);
+}
+#results-one > div > div > p {
+  text-align: center;
+  margin: 0;
+  color: #fff;
+}
+#results-one > div > div > p:nth-child(1) {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+#results-one > div > div > p:nth-child(2) {
+  font-weight: 800;
+}
+#results-two {
+  min-width: fit-content;
+  width: 20em;
+  margin: 50px auto;
+}
+#results-two > h4 {
+  border-radius: 10px;
+  border: 1px solid green;
+  background-color: rgb(79, 218, 79);
+  color: #fff;
+  padding: 20px;
+  letter-spacing: 1.3px;
+  text-align: center;
+}
+
+aside {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 12em;
+  height: 100vh;
+  background-color: #eee;
+  border-left: 1px solid #aaa;
+  transition: left 0.2s ease-in;
+}
+
+.active {
+  left: calc(100% - 12em);
+}
+
+img {
+  width: 40px;
+  position: absolute;
+  right: 101%;
+  cursor: pointer;
+}
+
+.product {
+  background-color: #fff;
+  margin: 10px;
+  padding: 5px 0;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.product:hover {
+  opacity: 0.7;
+}
