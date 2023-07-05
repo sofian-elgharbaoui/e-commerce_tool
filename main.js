@@ -22,6 +22,7 @@ let total_Orders_Had_Been_Delivered = document.getElementById(
 
 let total_Investment = document.getElementById("total-investment");
 let total_Revenue = document.getElementById("total-revenue");
+let one_product_cost = document.getElementById("one-product-cost");
 let final_Product_Price = document.getElementById("final-product-price");
 let total_Net_Profit = document.getElementById("total-net-profit");
 
@@ -47,6 +48,8 @@ submit.onclick = () => {
     }
   }
 
+  if (saveResultCont.hidden) saveResultCont.hidden = false;
+
   if (isValid) {
     let peopleReached = (+advertisement_Price.value * 2000) / 50;
     let onePersonAdCost = +advertisement_Price.value / peopleReached;
@@ -71,6 +74,10 @@ submit.onclick = () => {
     );
     total_Shipping_Fees.textContent = total_Shipping_Fees_Ammount.toFixed(2);
 
+    let money_of_one_product_cost =
+      +product_Price.value +
+      Number(+delivery_Price.value / +products_Number.value);
+
     let the_Final_Price =
       +product_Price.value +
       Number(+product_Price.value * (+product_Profit_Persentage.value / 100)) +
@@ -90,6 +97,7 @@ submit.onclick = () => {
 
     total_Investment.textContent = Math.ceil(total_Money_Invested);
     total_Revenue.textContent = Math.round(total_Money_Revenue);
+    one_product_cost.textContent = money_of_one_product_cost.toFixed(1);
     final_Product_Price.textContent = Math.round(the_Final_Price);
     total_Net_Profit.textContent = Math.floor(
       total_Money_Revenue - total_Money_Invested
@@ -119,8 +127,6 @@ img.onclick = () => {
       for (let i = 0; i < storedProducts.length; i++) {
         sideBar.classList.remove("active");
         const productData = storedProducts[i];
-        console.log(productData.prodName);
-        console.log(el.innerText);
         if (productData.prodName == el.textContent) {
           let {
             adPrice,
@@ -141,8 +147,6 @@ img.onclick = () => {
           shipping_Price.value = shipPrice;
           submit.click();
           saveResultCont.hidden = true;
-
-          submit.onclick = () => (saveResultCont.hidden = false);
         }
       }
     };
@@ -169,9 +173,13 @@ saveResultInput.onkeydown = (e) => {
     productsArr = [...productsArr, prodData];
     localStorage.setItem("products", JSON.stringify(productsArr));
 
-    let el = document.createElement("h3");
-    el.classList = "product";
-    el.innerHTML = storedProducts[i].prodName;
-    sideBar.append(el);
+    let newProductsArr = JSON.parse(localStorage.getItem("products"));
+    console.log(sideBar.childNodes);
+    for (let i = 0; i < newProductsArr.length; i++) {
+      let el = document.createElement("h3");
+      el.classList = "product";
+      el.innerHTML = newProductsArr[i].prodName;
+      sideBar.append(el);
+    }
   }
 };
